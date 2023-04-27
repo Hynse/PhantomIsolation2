@@ -1,0 +1,4 @@
+name: PhantomIsolation2
+version: '${version}'
+main: xyz.hynse.phantomisolation2.PhantomIsolation2
+api-version: 1.19
