@@ -9,8 +9,8 @@ task:
 phantomisolation-command:
   messages:
     status: "&aPhantom Isolation is currently %status%"
-    enabled-status: "&aenabled"
-    disabled-status: "&cdisabled"
+    status-enabled: "&aenabled"    # Changed from "enabled-status" to "status-enabled"
+    status-disabled: "&cdisabled"  # Changed from "disabled-status" to "status-disabled"
     not-player: "&cThis command can only be executed by a player!"
     enabled: "&aPhantom Isolation is now enabled."
     disable: "&cPhantom Isolation is now disabled."
