@@ -54,22 +54,22 @@ public class PhantomIsolation2 extends JavaPlugin {
             databaseUtil = new FlatFileDatabaseUtil();
         }
         databaseUtil.loadData();
+
     }
 
     public void reload() {
-        saveDefaultConfig();
         reloadConfig();
         taskInitialDelayTick = getConfig().getInt("task.initial-delay-tick");
         taskPeriodTick = getConfig().getInt("task.period-tick");
-        phantomisolationMessageReloadConfig = getConfig().getString("phatomisolationreload-command.messages.reload-config");
-        phantomisolationMessageReloadConfigError = getConfig().getString("phatomisolationreload-command.messages.reload-config-error");
-        phantomisolationMessageStatus = getConfig().getString("phatomisolation-command.messages.status");
-        phantomisolationMessageStatusEnabled = getConfig().getString("phatomisolation-command.messages.status-enabled");
-        phantomisolationMessageStatusDisabled = getConfig().getString("phatomisolation-command.messages.status-disabled");
-        phantomisolationMessageNotPlayer = getConfig().getString("phatomisolation-command.messages.not-player");
-        phantomisolationMessageEnabled = getConfig().getString("phatomisolation-command.messages.enabled");
-        phantomisolationMessageDisable = getConfig().getString("phatomisolation-command.messages.disable");
-        phantomisolationMessageUsage = getConfig().getString("phatomisolation-command.messages.usage");
+        phantomisolationMessageReloadConfig = getConfig().getString("phantomisolationreload-command.messages.reload-config");
+        phantomisolationMessageReloadConfigError = getConfig().getString("phantomisolationreload-command.messages.reload-config-error");
+        phantomisolationMessageStatus = getConfig().getString("phantomisolation-command.messages.status");
+        phantomisolationMessageStatusEnabled = getConfig().getString("phantomisolation-command.messages.status_enabled");
+        phantomisolationMessageStatusDisabled = getConfig().getString("phantomisolation-command.messages.status_disabled");
+        phantomisolationMessageNotPlayer = getConfig().getString("phantomisolation-command.messages.not-player");
+        phantomisolationMessageEnabled = getConfig().getString("phantomisolation-command.messages.enabled");
+        phantomisolationMessageDisable = getConfig().getString("phantomisolation-command.messages.disable");
+        phantomisolationMessageUsage = getConfig().getString("phantomisolation-command.messages.usage");
         String dataType = getConfig().getString("database.datatype");
         if ("mysql".equalsIgnoreCase(dataType)) {
             phantomisolationmessageDatabaseFailLoad = getConfig().getString("database.mysql-messages.fail-load");
@@ -78,8 +78,9 @@ public class PhantomIsolation2 extends JavaPlugin {
             phantomisolationmessageDatabaseFailLoad = getConfig().getString("database.flatfile-messages.fail-load");
             phantomisolationmessageDatabaseFailSave = getConfig().getString("database.flatfile-messages.fail-save");
         }
-
     }
+
+
     private void register() {
         getCommand("phantomisolation").setExecutor(new PhantomIsolationCommand());
         getCommand("phantomisolationreload").setExecutor(new ReloadCommand());

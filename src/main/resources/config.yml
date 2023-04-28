@@ -9,8 +9,8 @@ task:
 phantomisolation-command:
   messages:
     status: "&aPhantom Isolation is currently %status%"
-    status-enabled: "&aenabled"    # Changed from "enabled-status" to "status-enabled"
-    status-disabled: "&cdisabled"  # Changed from "disabled-status" to "status-disabled"
+    status_enabled: "&aenabled"
+    status_disabled: "&cdisabled"
     not-player: "&cThis command can only be executed by a player!"
     enabled: "&aPhantom Isolation is now enabled."
     disable: "&cPhantom Isolation is now disabled."
@@ -22,7 +22,6 @@ phantomisolationreload-command:
     reload-config: "&aConfiguration reloaded successfully."
     reload-config-error: "&cAn error occurred while reloading the configuration."
 
-# Database settings and error messages
 # Database settings and error messages
 database:
   # Database type
