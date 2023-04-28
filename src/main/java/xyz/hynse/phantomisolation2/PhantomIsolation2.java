@@ -1,38 +1,32 @@
 package xyz.hynse.phantomisolation2;
 
 import org.bukkit.plugin.java.JavaPlugin;
-import space.arim.morepaperlib.MorePaperLib;
 import xyz.hynse.phantomisolation2.command.PhantomIsolationCommand;
-import xyz.hynse.phantomisolation2.database.DatabaseManager;
-import xyz.hynse.phantomisolation2.listener.PlayerJoinQuitListener;
-import xyz.hynse.phantomisolation2.scheduler.PhantomIsolationScheduler;
+import xyz.hynse.phantomisolation2.listener.PhantomIsolationListener;
+import xyz.hynse.phantomisolation2.util.FlatFileDatabaseUtil;
 
 public class PhantomIsolation2 extends JavaPlugin {
     public static PhantomIsolation2 instance;
-    private MorePaperLib morePaperLib;
-    private DatabaseManager databaseManager;
+    public static String phantomisolationMessageReloadConfig;
+    public static String phantomisolationMessageReloadConfigError;
 
     @Override
     public void onEnable() {
         instance = this;
-        this.morePaperLib = new MorePaperLib(this);
-
+        saveDefaultConfig();
         register();
+        reload();
+        FlatFileDatabaseUtil.loadData();
     }
-
+    public void reload() {
+        saveDefaultConfig();
+        reloadConfig();
+        phantomisolationMessageReloadConfig = getConfig().getString("phatomisolationreload-command.messages.relaoad-config");
+        phantomisolationMessageReloadConfigError = getConfig().getString("phatomisolationreload-command.messages.relaoad-config-error");
+    }
     private void register() {
         getCommand("phantomisolation").setExecutor(new PhantomIsolationCommand(this));
-        PhantomIsolationScheduler scheduler = new PhantomIsolationScheduler(getMorePaperLib());
-        scheduler.start();
-        this.databaseManager = new DatabaseManager("database.db");
-        getServer().getPluginManager().registerEvents(new PlayerJoinQuitListener(databaseManager), this);
-    }
-
-    public MorePaperLib getMorePaperLib() {
-        return morePaperLib;
-    }
-
-    public DatabaseManager getDatabaseManager() {
-        return databaseManager;
+        getCommand("phantomisolationreload").setExecutor(new PhantomIsolationCommand(this));
+        getServer().getPluginManager().registerEvents(new PhantomIsolationListener(this), this);
     }
 }

@@ -2,3 +2,8 @@ name: PhantomIsolation2
 version: '${version}'
 main: xyz.hynse.phantomisolation2.PhantomIsolation2
 api-version: 1.19
+folia-supported: true
+commands:
+  phantomisolation:
+    description: Manage phantom isolation settings.
+    usage: /<command> [check|disable|enable]
