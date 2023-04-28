@@ -6,7 +6,7 @@ task:
   period-tick: 20
 
 # PhantomIsolation command messages
-phatomisolation-command:
+phantomisolation-command:
   messages:
     status: "&aPhantom Isolation is currently %status%"
     enabled-status: "&aenabled"
@@ -17,13 +17,30 @@ phatomisolation-command:
     usage: "&6Usage: /phantomisolation &a[check|disable|enable]"
 
 # PhantomIsolationReload command messages
-phatomisolationreload-command:
+phantomisolationreload-command:
   messages:
     reload-config: "&aConfiguration reloaded successfully."
     reload-config-error: "&cAn error occurred while reloading the configuration."
 
-# Database error messages
+# Database settings and error messages
+# Database settings and error messages
 database:
-  messages:
+  # Database type
+  datatype: "flatfile" # Options: "flatfile" or "mysql"
+
+  # MySQL database settings (only used if datatype is "mysql")
+  address: "localhost:3306"
+  user: "username"
+  password: "password"
+  database: "phantom_isolation"
+
+  # Flat file error messages
+  flatfile-messages:
     fail-load: "&cFailed to load data from the flat file."
     fail-save: "&cFailed to save data to the flat file."
+
+  # MySQL error messages
+  mysql-messages:
+    fail-connect: "&cFailed to connect to MySQL database."
+    fail-load: "&cFailed to load data from the MySQL database."
+    fail-save: "&cFailed to save data to the MySQL database."

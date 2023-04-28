@@ -13,14 +13,14 @@ import java.util.HashSet;
 import java.util.Set;
 import java.util.UUID;
 
-public class FlatFileDatabaseUtil {
+public class FlatFileDatabaseUtil implements DatabaseUtil {
     private static final Set<UUID> isolatedPlayers = new HashSet<>();
 
-    public static boolean getPlayerIsolationStatus(Player player) {
+    public boolean getPlayerIsolationStatus(Player player) {
         return isolatedPlayers.contains(player.getUniqueId());
     }
 
-    public static void setPlayerIsolationStatus(Player player, boolean isEnabled) {
+    public void setPlayerIsolationStatus(Player player, boolean isEnabled) {
         if (isEnabled) {
             isolatedPlayers.add(player.getUniqueId());
         } else {
@@ -29,7 +29,8 @@ public class FlatFileDatabaseUtil {
         saveData();
     }
 
-    public static void loadData() {
+    @Override
+    public void loadData() {
         Path dataPath = getDataFilePath();
         if (Files.exists(dataPath)) {
             try {

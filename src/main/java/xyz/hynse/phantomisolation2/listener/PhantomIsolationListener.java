@@ -23,7 +23,7 @@ public class PhantomIsolationListener implements Listener {
 
     private void tick() {
         for (Player player : Bukkit.getOnlinePlayers()) {
-            if (FlatFileDatabaseUtil.getPlayerIsolationStatus(player)) {
+            if (PhantomIsolation2.instance.databaseUtil.getPlayerIsolationStatus(player)) {
                 int timeSinceRest = player.getStatistic(Statistic.TIME_SINCE_REST);
                 if (timeSinceRest >= 24000) {
                     player.setStatistic(Statistic.TIME_SINCE_REST, 0);

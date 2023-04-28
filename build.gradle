@@ -11,11 +11,17 @@ repositories {
         name = "papermc-repo"
         url = "https://repo.papermc.io/repository/maven-public/"
     }
+    maven {
+        name = "mysql-connector-java"
+        url = "https://mvnrepository.com/artifact/mysql/mysql-connector-java"
+    }
 }
 
 dependencies {
-    compileOnly "dev.folia:folia-api:1.19.4-R0.1-SNAPSHOT"
+    compileOnly 'dev.folia:folia-api:1.19.4-R0.1-SNAPSHOT'
+    implementation 'mysql:mysql-connector-java:5.1.13'
 }
+
 
 
 def targetJavaVersion = 17

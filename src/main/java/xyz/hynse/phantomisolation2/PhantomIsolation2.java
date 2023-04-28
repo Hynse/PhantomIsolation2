@@ -5,7 +5,11 @@ import xyz.hynse.phantomisolation2.command.PhantomIsolationCommand;
 import xyz.hynse.phantomisolation2.command.ReloadCommand;
 import xyz.hynse.phantomisolation2.listener.PhantomIsolationListener;
 import xyz.hynse.phantomisolation2.listener.PhantomIsolationTabCompleterListener;
+import xyz.hynse.phantomisolation2.util.DatabaseUtil;
 import xyz.hynse.phantomisolation2.util.FlatFileDatabaseUtil;
+import xyz.hynse.phantomisolation2.util.MySQLDatabaseUtil;
+
+import java.sql.SQLException;
 
 public class PhantomIsolation2 extends JavaPlugin {
     public static PhantomIsolation2 instance;
@@ -22,6 +26,7 @@ public class PhantomIsolation2 extends JavaPlugin {
     public static String phantomisolationmessageDatabaseFailLoad;
     public static String phantomisolationmessageDatabaseFailSave;
     public static String phantomisolationMessageUsage;
+    public static DatabaseUtil databaseUtil;
 
     @Override
     public void onEnable() {
@@ -29,8 +34,28 @@ public class PhantomIsolation2 extends JavaPlugin {
         saveDefaultConfig();
         register();
         reload();
-        FlatFileDatabaseUtil.loadData();
+        initDatabase();
     }
+
+    private void initDatabase() {
+        String dataType = getConfig().getString("database.datatype");
+        if ("mysql".equalsIgnoreCase(dataType)) {
+            String address = getConfig().getString("address");
+            String user = getConfig().getString("user");
+            String password = getConfig().getString("password");
+            String database = getConfig().getString("database");
+            try {
+                databaseUtil = new MySQLDatabaseUtil(address, user, password, database);
+            } catch (SQLException e) {
+                getLogger().severe("Failed to connect to MySQL database!");
+                e.printStackTrace();
+            }
+        } else {
+            databaseUtil = new FlatFileDatabaseUtil();
+        }
+        databaseUtil.loadData();
+    }
+
     public void reload() {
         saveDefaultConfig();
         reloadConfig();
@@ -44,9 +69,16 @@ public class PhantomIsolation2 extends JavaPlugin {
         phantomisolationMessageNotPlayer = getConfig().getString("phatomisolation-command.messages.not-player");
         phantomisolationMessageEnabled = getConfig().getString("phatomisolation-command.messages.enabled");
         phantomisolationMessageDisable = getConfig().getString("phatomisolation-command.messages.disable");
-        phantomisolationmessageDatabaseFailLoad = getConfig().getString("database.messages.fail-load");
-        phantomisolationmessageDatabaseFailSave = getConfig().getString("database.messages.fail-save");
         phantomisolationMessageUsage = getConfig().getString("phatomisolation-command.messages.usage");
+        String dataType = getConfig().getString("database.datatype");
+        if ("mysql".equalsIgnoreCase(dataType)) {
+            phantomisolationmessageDatabaseFailLoad = getConfig().getString("database.mysql-messages.fail-load");
+            phantomisolationmessageDatabaseFailSave = getConfig().getString("database.mysql-messages.fail-save");
+        } else {
+            phantomisolationmessageDatabaseFailLoad = getConfig().getString("database.flatfile-messages.fail-load");
+            phantomisolationmessageDatabaseFailSave = getConfig().getString("database.flatfile-messages.fail-save");
+        }
+
     }
     private void register() {
         getCommand("phantomisolation").setExecutor(new PhantomIsolationCommand());
