@@ -12,7 +12,7 @@ commands:
     usage: /<command>
     aliases:
       - pilr
-permission:
+permissions:
   phantomisolation.reload:
     description: Phantom isolation reload command
     default: false
