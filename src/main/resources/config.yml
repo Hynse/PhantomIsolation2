@@ -15,6 +15,7 @@ phantomisolation-command:
     enabled: "&aPhantom Isolation is now enabled."
     disable: "&cPhantom Isolation is now disabled."
     usage: "&6Usage: /phantomisolation &a[check|disable|enable]"
+    no-permission: "&You don't have permission to execute this command"
 
 # PhantomIsolationReload command messages
 phantomisolationreload-command:

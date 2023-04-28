@@ -32,6 +32,7 @@ public class PhantomIsolation2 extends JavaPlugin {
     public static String user;
     public static String password;
     public static String database;
+    public static String phantomisolationMessageNoPermission;
 
     @Override
     public void onEnable() {
@@ -75,6 +76,7 @@ public class PhantomIsolation2 extends JavaPlugin {
         phantomisolationMessageEnabled = getConfig().getString("phantomisolation-command.messages.enabled");
         phantomisolationMessageDisable = getConfig().getString("phantomisolation-command.messages.disable");
         phantomisolationMessageUsage = getConfig().getString("phantomisolation-command.messages.usage");
+        phantomisolationMessageNoPermission = getConfig().getString("phantomisolation-command.messages.no-permission");
         dataType = getConfig().getString("database.datatype");
         address = getConfig().getString("database.address");
         user = getConfig().getString("database.user");

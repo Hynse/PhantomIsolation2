@@ -3,10 +3,8 @@ package xyz.hynse.phantomisolation2.util;
 import org.bukkit.entity.Player;
 import xyz.hynse.phantomisolation2.PhantomIsolation2;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
+import java.util.UUID;
 
 public class MySQLDatabaseUtil implements DatabaseUtil {
     private final Connection connection;
@@ -17,7 +15,7 @@ public class MySQLDatabaseUtil implements DatabaseUtil {
     }
 
     private void createTable() throws SQLException {
-        String query = "CREATE TABLE IF NOT EXISTS phantom_isolation_players (uuid VARCHAR(36) PRIMARY KEY);";
+        String query = "CREATE TABLE IF NOT EXISTS phantom_isolation_players (username VARCHAR(16), uuid VARCHAR(36) PRIMARY KEY, status BOOLEAN);";
         try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
             preparedStatement.execute();
         }
@@ -25,17 +23,47 @@ public class MySQLDatabaseUtil implements DatabaseUtil {
 
     @Override
     public boolean getPlayerIsolationStatus(Player player) {
-        // Implement this method for MySQL.
+        String query = "SELECT * FROM phantom_isolation_players WHERE uuid = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, player.getUniqueId().toString());
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getBoolean("status");
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         return false;
     }
 
     @Override
     public void setPlayerIsolationStatus(Player player, boolean isEnabled) {
-        // Implement this method for MySQL.
+        String query = "INSERT INTO phantom_isolation_players (username, uuid, status) VALUES (?, ?, ?) ON DUPLICATE KEY UPDATE status = ?";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            preparedStatement.setString(1, player.getName());
+            preparedStatement.setString(2, player.getUniqueId().toString());
+            preparedStatement.setBoolean(3, isEnabled);
+            preparedStatement.setBoolean(4, isEnabled);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
     public void loadData() {
-        // Implement this method for MySQL.
+        String query = "SELECT * FROM phantom_isolation_players";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(query)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String uuid = resultSet.getString("uuid");
+                    boolean status = resultSet.getBoolean("status");
+                    PhantomIsolation2.databaseUtil.setPlayerIsolationStatus(PhantomIsolation2.instance.getServer().getPlayer(UUID.fromString(uuid)), status);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 }

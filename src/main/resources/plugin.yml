@@ -5,16 +5,18 @@ api-version: 1.19
 folia-supported: true
 commands:
   phantomisolation:
-    description: Phantom isolation command
     usage: /<command> [check|disable|enable]
-    permission: phantomisolation.use
-    default: true
     aliases:
       - pil
   phantomisolationreload:
-    description: Phantom isolation reload command
     usage: /<command>
-    permission: phantomisolation.reload
-    default: false
     aliases:
       - pilr
+permission:
+  phantomisolation.reload:
+    description: Phantom isolation reload command
+    default: false
+  phantomisolation.use:
+    description: Phantom isolation command
+    default: true
+

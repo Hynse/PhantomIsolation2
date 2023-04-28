@@ -12,6 +12,11 @@ public class PhantomIsolationCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
+        if (!sender.hasPermission("phantomisolation.use")) {
+            sendMessage(sender, PhantomIsolation2.phantomisolationMessageNoPermission);
+            return true;
+        }
+
         DatabaseUtil databaseUtil = PhantomIsolation2.databaseUtil;
 
         if (command.getName().equalsIgnoreCase("phantomisolation")) {
