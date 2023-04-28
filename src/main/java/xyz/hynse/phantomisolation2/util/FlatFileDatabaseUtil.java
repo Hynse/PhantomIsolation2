@@ -1,5 +1,6 @@
 package xyz.hynse.phantomisolation2.util;
 
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import xyz.hynse.phantomisolation2.PhantomIsolation2;
 
@@ -34,7 +35,7 @@ public class FlatFileDatabaseUtil {
             try {
                 Files.readAllLines(dataPath).forEach(line -> isolatedPlayers.add(UUID.fromString(line)));
             } catch (IOException e) {
-                PhantomIsolation2.instance.getLogger().severe("Failed to load data from file: " + e.getMessage());
+                PhantomIsolation2.instance.getLogger().info(ChatColor.translateAlternateColorCodes('&', PhantomIsolation2.phantomisolationmessageDatabaseFailLoad + e.getMessage()));
             }
         }
     }
@@ -46,7 +47,7 @@ public class FlatFileDatabaseUtil {
         try {
             Files.write(getDataFilePath(), dataBuilder.toString().getBytes());
         } catch (IOException e) {
-            PhantomIsolation2.instance.getLogger().severe("Failed to save data to file: " + e.getMessage());
+            PhantomIsolation2.instance.getLogger().info(ChatColor.translateAlternateColorCodes('&', PhantomIsolation2.phantomisolationmessageDatabaseFailSave + e.getMessage()));
         }
     }
 

@@ -1,5 +1,6 @@
 package xyz.hynse.phantomisolation2.command;
 
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,27 +25,27 @@ public class PhantomIsolationCommand implements CommandExecutor {
             if (args[0].equalsIgnoreCase("check")) {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
-                    sender.sendMessage("Phantom isolation status: " + FlatFileDatabaseUtil.getPlayerIsolationStatus(player));
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', PhantomIsolation2.phantomisolationMessageStatus + FlatFileDatabaseUtil.getPlayerIsolationStatus(player)));
                 } else {
-                    sender.sendMessage("This command can only be used by a player");
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', PhantomIsolation2.phantomisolationMessageNotPlayer));
                 }
                 return true;
             } else if (args[0].equalsIgnoreCase("disable")) {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
                     FlatFileDatabaseUtil.setPlayerIsolationStatus(player, false);
-                    sender.sendMessage("Phantom isolation disabled");
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', PhantomIsolation2.phantomisolationMessageDisable));;
                 } else {
-                    sender.sendMessage("This command can only be used by a player");
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', PhantomIsolation2.phantomisolationMessageNotPlayer));;
                 }
                 return true;
             } else if (args[0].equalsIgnoreCase("enable")) {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
                     FlatFileDatabaseUtil.setPlayerIsolationStatus(player, true);
-                    sender.sendMessage("Phantom isolation enabled");
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', PhantomIsolation2.phantomisolationMessageEnabled));;
                 } else {
-                    sender.sendMessage("This command can only be used by a player");
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', PhantomIsolation2.phantomisolationMessageNotPlayer));;
                 }
                 return true;
             }

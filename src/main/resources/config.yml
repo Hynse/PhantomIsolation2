@@ -1,0 +1,26 @@
+# PhantomIsolation2 Configuration
+
+# Task settings
+task:
+  initial-delay-tick: 20
+  period-tick: 20
+
+# PhantomIsolation command messages
+phatomisolation-command:
+  messages:
+    status: "&aPhantom Isolation is currently %status%"
+    not-player: "&cThis command can only be executed by a player!"
+    enabled: "&aPhantom Isolation is now enabled."
+    disable: "&cPhantom Isolation is now disabled."
+
+# PhantomIsolationReload command messages
+phatomisolationreload-command:
+  messages:
+    relaoad-config: "&aConfiguration reloaded successfully."
+    relaoad-config-error: "&cAn error occurred while reloading the configuration."
+
+# Database error messages
+database:
+  messages:
+    fail-load: "&cFailed to load data from the flat file."
+    fail-save: "&cFailed to save data to the flat file."
