@@ -12,6 +12,8 @@ public class PhantomIsolation2 extends JavaPlugin {
     public static String phantomisolationMessageReloadConfig;
     public static String phantomisolationMessageReloadConfigError;
     public static String phantomisolationMessageStatus;
+    public static String phantomisolationMessageStatusEnabled;
+    public static String phantomisolationMessageStatusDisabled;
     public static String phantomisolationMessageNotPlayer;
     public static String phantomisolationMessageEnabled;
     public static String phantomisolationMessageDisable;
@@ -19,6 +21,7 @@ public class PhantomIsolation2 extends JavaPlugin {
     public static int taskPeriodTick;
     public static String phantomisolationmessageDatabaseFailLoad;
     public static String phantomisolationmessageDatabaseFailSave;
+    public static String phantomisolationMessageUsage;
 
     @Override
     public void onEnable() {
@@ -36,14 +39,17 @@ public class PhantomIsolation2 extends JavaPlugin {
         phantomisolationMessageReloadConfig = getConfig().getString("phatomisolationreload-command.messages.relaoad-config");
         phantomisolationMessageReloadConfigError = getConfig().getString("phatomisolationreload-command.messages.relaoad-config-error");
         phantomisolationMessageStatus = getConfig().getString("phatomisolation-command.messages.status");
+        phantomisolationMessageStatusEnabled = getConfig().getString("phatomisolation-command.messages.status-enabled");
+        phantomisolationMessageStatusDisabled = getConfig().getString("phatomisolation-command.messages.status-disabled");
         phantomisolationMessageNotPlayer = getConfig().getString("phatomisolation-command.messages.not-player");
         phantomisolationMessageEnabled = getConfig().getString("phatomisolation-command.messages.enabled");
         phantomisolationMessageDisable = getConfig().getString("phatomisolation-command.messages.disable");
         phantomisolationmessageDatabaseFailLoad = getConfig().getString("database.messages.fail-load");
         phantomisolationmessageDatabaseFailSave = getConfig().getString("database.messages.fail-save");
+        phantomisolationMessageUsage = getConfig().getString("phatomisolation-command.messages.usage");
     }
     private void register() {
-        getCommand("phantomisolation").setExecutor(new PhantomIsolationCommand(this));
+        getCommand("phantomisolation").setExecutor(new PhantomIsolationCommand());
         getCommand("phantomisolationreload").setExecutor(new ReloadCommand());
         getCommand("phantomisolation").setTabCompleter(new PhantomIsolationTabCompleterListener());
         getServer().getPluginManager().registerEvents(new PhantomIsolationListener(this), this);

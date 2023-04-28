@@ -7,6 +7,14 @@ commands:
   phantomisolation:
     description: Phantom isolation command
     usage: /<command> [check|disable|enable]
+    permission: phantomisolation.use
+    default: true
+    aliases:
+      - pil
   phantomisolationreload:
     description: Phantom isolation reload command
     usage: /<command>
+    permission: phantomisolation.reload
+    default: false
+    aliases:
+      - pilr

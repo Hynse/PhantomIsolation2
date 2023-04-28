@@ -6,18 +6,21 @@ task:
   period-tick: 20
 
 # PhantomIsolation command messages
-phatomisolation-command:
+phantomisolation-command:
   messages:
-    status: "&aPhantom Isolation is currently %status%"
+    status: "&6Phantom Isolation is currently &e%status%"
+    enabled-status: "&aenabled"
+    disabled-status: "&cdisabled"
     not-player: "&cThis command can only be executed by a player!"
     enabled: "&aPhantom Isolation is now enabled."
     disable: "&cPhantom Isolation is now disabled."
+    usage: "&6Usage: /phantomisolation &e[check|disable|enable]"
 
 # PhantomIsolationReload command messages
-phatomisolationreload-command:
+phantomisolationreload-command:
   messages:
-    relaoad-config: "&aConfiguration reloaded successfully."
-    relaoad-config-error: "&cAn error occurred while reloading the configuration."
+    reload-config: "&aConfiguration reloaded successfully."
+    reload-config-error: "&cAn error occurred while reloading the configuration."
 
 # Database error messages
 database:
