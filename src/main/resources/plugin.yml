@@ -15,7 +15,6 @@ commands:
 permissions:
   phantomisolation.reload:
     description: Phantom isolation reload command
-    default: false
   phantomisolation.use:
     description: Phantom isolation command
     default: true
