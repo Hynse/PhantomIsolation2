@@ -1,6 +1,7 @@
 package xyz.hynse.phantomisolation2.util;
 
 import org.bukkit.entity.Player;
+import xyz.hynse.phantomisolation2.PhantomIsolation2;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -10,8 +11,8 @@ import java.sql.SQLException;
 public class MySQLDatabaseUtil implements DatabaseUtil {
     private final Connection connection;
 
-    public MySQLDatabaseUtil(String address, String user, String password, String database) throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://" + address + "/" + database + "?useSSL=false", user, password);
+    public MySQLDatabaseUtil() throws SQLException {
+        connection = DriverManager.getConnection("jdbc:mysql://" + PhantomIsolation2.address + "/" + PhantomIsolation2.database + "?useSSL=false", PhantomIsolation2.user, PhantomIsolation2.password);
         createTable();
     }
 

@@ -27,6 +27,11 @@ public class PhantomIsolation2 extends JavaPlugin {
     public static String phantomisolationmessageDatabaseFailSave;
     public static String phantomisolationMessageUsage;
     public static DatabaseUtil databaseUtil;
+    public static String dataType;
+    public static String address;
+    public static String user;
+    public static String password;
+    public static String database;
 
     @Override
     public void onEnable() {
@@ -38,14 +43,14 @@ public class PhantomIsolation2 extends JavaPlugin {
     }
 
     private void initDatabase() {
-        String dataType = getConfig().getString("database.datatype");
+        dataType = getConfig().getString("database.datatype");
         if ("mysql".equalsIgnoreCase(dataType)) {
-            String address = getConfig().getString("address");
-            String user = getConfig().getString("user");
-            String password = getConfig().getString("password");
-            String database = getConfig().getString("database");
+            address = getConfig().getString("database.address");
+            user = getConfig().getString("database.user");
+            password = getConfig().getString("database.password");
+            database = getConfig().getString("database.database");
             try {
-                databaseUtil = new MySQLDatabaseUtil(address, user, password, database);
+                databaseUtil = new MySQLDatabaseUtil();
             } catch (SQLException e) {
                 getLogger().severe("Failed to connect to MySQL database!");
                 e.printStackTrace();
@@ -70,7 +75,11 @@ public class PhantomIsolation2 extends JavaPlugin {
         phantomisolationMessageEnabled = getConfig().getString("phantomisolation-command.messages.enabled");
         phantomisolationMessageDisable = getConfig().getString("phantomisolation-command.messages.disable");
         phantomisolationMessageUsage = getConfig().getString("phantomisolation-command.messages.usage");
-        String dataType = getConfig().getString("database.datatype");
+        dataType = getConfig().getString("database.datatype");
+        address = getConfig().getString("database.address");
+        user = getConfig().getString("database.user");
+        password = getConfig().getString("database.password");
+        database = getConfig().getString("database.database");
         if ("mysql".equalsIgnoreCase(dataType)) {
             phantomisolationmessageDatabaseFailLoad = getConfig().getString("database.mysql-messages.fail-load");
             phantomisolationmessageDatabaseFailSave = getConfig().getString("database.mysql-messages.fail-save");
