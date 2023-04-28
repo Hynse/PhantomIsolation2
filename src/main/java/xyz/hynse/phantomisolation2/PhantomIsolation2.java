@@ -2,6 +2,7 @@ package xyz.hynse.phantomisolation2;
 
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.hynse.phantomisolation2.command.PhantomIsolationCommand;
+import xyz.hynse.phantomisolation2.command.ReloadCommand;
 import xyz.hynse.phantomisolation2.listener.PhantomIsolationListener;
 import xyz.hynse.phantomisolation2.listener.PhantomIsolationTabCompleterListener;
 import xyz.hynse.phantomisolation2.util.FlatFileDatabaseUtil;
@@ -43,7 +44,7 @@ public class PhantomIsolation2 extends JavaPlugin {
     }
     private void register() {
         getCommand("phantomisolation").setExecutor(new PhantomIsolationCommand(this));
-        getCommand("phantomisolationreload").setExecutor(new PhantomIsolationCommand(this));
+        getCommand("phantomisolationreload").setExecutor(new ReloadCommand());
         getCommand("phantomisolation").setTabCompleter(new PhantomIsolationTabCompleterListener());
         getServer().getPluginManager().registerEvents(new PhantomIsolationListener(this), this);
     }

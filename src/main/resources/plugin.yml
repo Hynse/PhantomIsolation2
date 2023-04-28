@@ -5,5 +5,8 @@ api-version: 1.19
 folia-supported: true
 commands:
   phantomisolation:
-    description: Manage phantom isolation settings.
+    description: Phantom isolation command
     usage: /<command> [check|disable|enable]
+  phantomisolationreload:
+    description: Phantom isolation reload command
+    usage: /<command>
