@@ -16,13 +16,13 @@ public class PhantomIsolationCommand implements CommandExecutor {
                 sender.sendMessage(ChatColor.translateAlternateColorCodes('&', PhantomIsolation2.phantomisolationMessageUsage));
                 return true;
             }
-            if (args.length > 0 && (args[0].equalsIgnoreCase("check") || args[0].equalsIgnoreCase("status"))) {
+            if (args[0].equalsIgnoreCase("check") || args[0].equalsIgnoreCase("status")) {
                 if (sender instanceof Player) {
                     Player player = (Player) sender;
                     boolean status = FlatFileDatabaseUtil.getPlayerIsolationStatus(player);
                     String statusText = status ? PhantomIsolation2.phantomisolationMessageStatusEnabled : PhantomIsolation2.phantomisolationMessageStatusDisabled;
-                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', PhantomIsolation2.phantomisolationMessageStatus.replace("%status%", statusText)));
-
+                    String message = PhantomIsolation2.phantomisolationMessageStatus.replace("%status%", statusText);
+                    sender.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
                 } else {
                     sender.sendMessage(ChatColor.translateAlternateColorCodes('&', PhantomIsolation2.phantomisolationMessageNotPlayer));
                 }

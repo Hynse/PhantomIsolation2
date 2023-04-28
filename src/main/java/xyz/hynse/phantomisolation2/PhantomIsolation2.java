@@ -36,8 +36,8 @@ public class PhantomIsolation2 extends JavaPlugin {
         reloadConfig();
         taskInitialDelayTick = getConfig().getInt("task.initial-delay-tick");
         taskPeriodTick = getConfig().getInt("task.period-tick");
-        phantomisolationMessageReloadConfig = getConfig().getString("phatomisolationreload-command.messages.relaoad-config");
-        phantomisolationMessageReloadConfigError = getConfig().getString("phatomisolationreload-command.messages.relaoad-config-error");
+        phantomisolationMessageReloadConfig = getConfig().getString("phatomisolationreload-command.messages.reload-config");
+        phantomisolationMessageReloadConfigError = getConfig().getString("phatomisolationreload-command.messages.reload-config-error");
         phantomisolationMessageStatus = getConfig().getString("phatomisolation-command.messages.status");
         phantomisolationMessageStatusEnabled = getConfig().getString("phatomisolation-command.messages.status-enabled");
         phantomisolationMessageStatusDisabled = getConfig().getString("phatomisolation-command.messages.status-disabled");
