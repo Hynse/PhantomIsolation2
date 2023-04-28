@@ -20,6 +20,8 @@ repositories {
 dependencies {
     compileOnly "dev.folia:folia-api:1.19.4-R0.1-SNAPSHOT"
     implementation 'space.arim.morepaperlib:morepaperlib:0.4.2'
+    implementation 'org.xerial:sqlite-jdbc:3.34.0'
+
 }
 
 def targetJavaVersion = 17
