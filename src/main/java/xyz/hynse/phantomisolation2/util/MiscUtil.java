@@ -80,12 +80,6 @@ public class MiscUtil {
         PhantomIsolation2.databaseUtil.loadData();
 
     }
-    public void register() {
-        instance.getCommand("phantomisolation").setExecutor(new PhantomIsolationCommand());
-        instance.getCommand("phantomisolationreload").setExecutor(new ReloadCommand());
-        instance.getCommand("phantomisolation").setTabCompleter(new PhantomIsolationTabCompleterListener());
-        instance.getServer().getPluginManager().registerEvents(new PhantomIsolationListener(), PhantomIsolation2.instance);
-    }
     public static void sendMessage(CommandSender sender, String message) {
         if (message != null) {
             sender.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
