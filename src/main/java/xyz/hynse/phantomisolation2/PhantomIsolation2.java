@@ -9,7 +9,6 @@ import xyz.hynse.phantomisolation2.util.DatabaseUtil;
 import xyz.hynse.phantomisolation2.util.MiscUtil;
 public class PhantomIsolation2 extends JavaPlugin {
     public static PhantomIsolation2 instance;
-    public static PhantomIsolationListener PhantomIsolationListener;
     public static DatabaseUtil databaseUtil;
     @Override
     public void onEnable() {
@@ -18,14 +17,15 @@ public class PhantomIsolation2 extends JavaPlugin {
         register();
         MiscUtil.reload();
         MiscUtil.initDatabase();
-        PhantomIsolationListener.start();
+        PhantomIsolationListener listener = new PhantomIsolationListener();
+        listener.start();
     }
 
     public void register() {
         getCommand("phantomisolation").setExecutor(new PhantomIsolationCommand());
         getCommand("phantomisolationreload").setExecutor(new ReloadCommand());
         getCommand("phantomisolation").setTabCompleter(new PhantomIsolationTabCompleterListener());
-        getServer().getPluginManager().registerEvents(new PhantomIsolationListener(), instance);
-        getServer().getPluginManager().registerEvents(new MiscUtil(), instance);
+        getServer().getPluginManager().registerEvents(new PhantomIsolationListener(), this);
+        getServer().getPluginManager().registerEvents(new MiscUtil(), this);
     }
 }
