@@ -10,7 +10,6 @@ import xyz.hynse.phantomisolation2.util.MiscUtil;
 public class PhantomIsolation2 extends JavaPlugin {
     public static PhantomIsolation2 instance;
     public static PhantomIsolationListener PhantomIsolationListener;
-    public static MiscUtil MiscUtil;
     public static DatabaseUtil databaseUtil;
     @Override
     public void onEnable() {
@@ -23,10 +22,10 @@ public class PhantomIsolation2 extends JavaPlugin {
     }
 
     public void register() {
-        instance.getCommand("phantomisolation").setExecutor(new PhantomIsolationCommand());
-        instance.getCommand("phantomisolationreload").setExecutor(new ReloadCommand());
-        instance.getCommand("phantomisolation").setTabCompleter(new PhantomIsolationTabCompleterListener());
-        instance.getServer().getPluginManager().registerEvents(new PhantomIsolationListener(), instance);
-        instance.getServer().getPluginManager().registerEvents(new MiscUtil(), instance);
+        getCommand("phantomisolation").setExecutor(new PhantomIsolationCommand());
+        getCommand("phantomisolationreload").setExecutor(new ReloadCommand());
+        getCommand("phantomisolation").setTabCompleter(new PhantomIsolationTabCompleterListener());
+        getServer().getPluginManager().registerEvents(new PhantomIsolationListener(), instance);
+        getServer().getPluginManager().registerEvents(new MiscUtil(), instance);
     }
 }

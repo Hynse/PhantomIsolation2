@@ -5,16 +5,12 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.Listener;
 import xyz.hynse.phantomisolation2.PhantomIsolation2;
-import xyz.hynse.phantomisolation2.command.PhantomIsolationCommand;
-import xyz.hynse.phantomisolation2.command.ReloadCommand;
-import xyz.hynse.phantomisolation2.listener.PhantomIsolationListener;
-import xyz.hynse.phantomisolation2.listener.PhantomIsolationTabCompleterListener;
 
 import java.sql.SQLException;
 
 public class MiscUtil implements Listener {
     private static final PhantomIsolation2 instance = PhantomIsolation2.instance;
-    private final FileConfiguration config = instance.getConfig();
+    private static final FileConfiguration config = instance.getConfig();
     public static String phantomisolationMessageReloadConfig;
     public static String phantomisolationMessageReloadConfigError;
     public static String phantomisolationMessageStatus;
@@ -34,7 +30,7 @@ public class MiscUtil implements Listener {
     public static String password;
     public static String database;
     public static String phantomisolationMessageNoPermission;
-    public void reload() {
+    public static void reload() {
         instance.saveDefaultConfig();
         instance.reloadConfig();
         taskInitialDelayTick = config.getInt("task.initial-delay-tick");
@@ -62,7 +58,7 @@ public class MiscUtil implements Listener {
             phantomisolationmessageDatabaseFailSave = config.getString("database.flatfile-messages.fail-save");
         }
     }
-    public void initDatabase() {
+    public static void initDatabase() {
         dataType = config.getString("database.datatype");
         if ("mysql".equalsIgnoreCase(dataType)) {
             address = config.getString("database.address");
