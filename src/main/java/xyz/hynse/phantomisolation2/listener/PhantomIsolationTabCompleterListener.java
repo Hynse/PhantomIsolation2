@@ -1,10 +1,9 @@
 package xyz.hynse.phantomisolation2.listener;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.command.TabCompleter;
-import xyz.hynse.phantomisolation2.PhantomIsolation2;
+import xyz.hynse.phantomisolation2.util.MiscUtil;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -14,7 +13,7 @@ public class PhantomIsolationTabCompleterListener implements TabCompleter {
     @Override
     public List<String> onTabComplete(CommandSender sender, Command command, String alias, String[] args) {
         if (!sender.hasPermission("phantomisolation.use")) {
-            sendMessage(sender, PhantomIsolation2.phantomisolationMessageNoPermission);
+            MiscUtil.sendMessage(sender, MiscUtil.phantomisolationMessageNoPermission);
             return Collections.emptyList();
         }
         if (command.getName().equalsIgnoreCase("phantomisolation") || command.getName().equalsIgnoreCase("pli")) {
@@ -31,10 +30,5 @@ public class PhantomIsolationTabCompleterListener implements TabCompleter {
             }
         }
         return null;
-    }
-    private void sendMessage(CommandSender sender, String message) {
-        if (message != null) {
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
-        }
     }
 }

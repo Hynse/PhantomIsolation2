@@ -48,7 +48,7 @@ public class FlatFileDatabaseUtil implements DatabaseUtil {
                     isolatedPlayers.put(uuid, status);
                 }
             } catch (IOException e) {
-                PhantomIsolation2.instance.getLogger().info(ChatColor.translateAlternateColorCodes('&', PhantomIsolation2.phantomisolationmessageDatabaseFailLoad + e.getMessage()));
+                PhantomIsolation2.instance.getLogger().info(ChatColor.translateAlternateColorCodes('&', MiscUtil.phantomisolationmessageDatabaseFailLoad + e.getMessage()));
             }
         }
     }
@@ -65,9 +65,9 @@ public class FlatFileDatabaseUtil implements DatabaseUtil {
         String jsonData = gson.toJson(dataMap);
 
         try {
-            Files.write(getDataFilePath(), jsonData.getBytes(StandardCharsets.UTF_8));
+            Files.writeString(getDataFilePath(), jsonData);
         } catch (IOException e) {
-            PhantomIsolation2.instance.getLogger().info(ChatColor.translateAlternateColorCodes('&', PhantomIsolation2.phantomisolationmessageDatabaseFailSave + e.getMessage()));
+            PhantomIsolation2.instance.getLogger().info(ChatColor.translateAlternateColorCodes('&', MiscUtil.phantomisolationmessageDatabaseFailSave + e.getMessage()));
         }
     }
 

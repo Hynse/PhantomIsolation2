@@ -10,7 +10,7 @@ public class MySQLDatabaseUtil implements DatabaseUtil {
     private final Connection connection;
 
     public MySQLDatabaseUtil() throws SQLException {
-        connection = DriverManager.getConnection("jdbc:mysql://" + PhantomIsolation2.address + "/" + PhantomIsolation2.database + "?useSSL=false", PhantomIsolation2.user, PhantomIsolation2.password);
+        connection = DriverManager.getConnection("jdbc:mysql://" + MiscUtil.address + "/" + MiscUtil.database + "?useSSL=false", MiscUtil.user, MiscUtil.password);
         createTable();
     }
 

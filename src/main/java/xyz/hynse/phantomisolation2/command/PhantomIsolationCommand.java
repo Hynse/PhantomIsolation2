@@ -1,19 +1,19 @@
 package xyz.hynse.phantomisolation2.command;
 
-import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import xyz.hynse.phantomisolation2.PhantomIsolation2;
 import xyz.hynse.phantomisolation2.util.DatabaseUtil;
+import xyz.hynse.phantomisolation2.util.MiscUtil;
 
 public class PhantomIsolationCommand implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender sender, Command command, String label, String[] args) {
         if (!sender.hasPermission("phantomisolation.use")) {
-            sendMessage(sender, PhantomIsolation2.phantomisolationMessageNoPermission);
+            MiscUtil.sendMessage(sender, MiscUtil.phantomisolationMessageNoPermission);
             return true;
         }
 
@@ -21,49 +21,37 @@ public class PhantomIsolationCommand implements CommandExecutor {
 
         if (command.getName().equalsIgnoreCase("phantomisolation")) {
             if (args.length == 0) {
-                sendMessage(sender, PhantomIsolation2.phantomisolationMessageUsage);
+                MiscUtil.sendMessage(sender, MiscUtil.phantomisolationMessageUsage);
                 return true;
             }
 
             if (!(sender instanceof Player)) {
-                sendMessage(sender, PhantomIsolation2.phantomisolationMessageNotPlayer);
+                MiscUtil.sendMessage(sender, MiscUtil.phantomisolationMessageNotPlayer);
                 return true;
             }
 
             Player player = (Player) sender;
 
             switch (args[0].toLowerCase()) {
-                case "check":
-                case "status":
+                case "check", "status" -> {
                     boolean status = databaseUtil.getPlayerIsolationStatus(player);
-                    String statusText = status ? PhantomIsolation2.phantomisolationMessageStatusEnabled : PhantomIsolation2.phantomisolationMessageStatusDisabled;
-                    String message = PhantomIsolation2.phantomisolationMessageStatus.replace("%status%", statusText);
-                    sendMessage(sender, message);
-                    break;
-
-                case "disable":
-                case "off":
+                    String statusText = status ? MiscUtil.phantomisolationMessageStatusEnabled : MiscUtil.phantomisolationMessageStatusDisabled;
+                    String message = MiscUtil.phantomisolationMessageStatus.replace("%status%", statusText);
+                    MiscUtil.sendMessage(sender, message);
+                }
+                case "disable", "off" -> {
                     databaseUtil.setPlayerIsolationStatus(player, false);
-                    sendMessage(sender, PhantomIsolation2.phantomisolationMessageDisable);
-                    break;
-
-                case "enable":
-                case "on":
+                    MiscUtil.sendMessage(sender, MiscUtil.phantomisolationMessageDisable);
+                }
+                case "enable", "on" -> {
                     databaseUtil.setPlayerIsolationStatus(player, true);
-                    sendMessage(sender, PhantomIsolation2.phantomisolationMessageEnabled);
-                    break;
-
-                default:
-                    sendMessage(sender, PhantomIsolation2.phantomisolationMessageUsage);
+                    MiscUtil.sendMessage(sender, MiscUtil.phantomisolationMessageEnabled);
+                }
+                default -> MiscUtil.sendMessage(sender, MiscUtil.phantomisolationMessageUsage);
             }
             return true;
         }
         return false;
     }
 
-    private void sendMessage(CommandSender sender, String message) {
-        if (message != null) {
-            sender.sendMessage(ChatColor.translateAlternateColorCodes('&', message));
-        }
-    }
 }
