@@ -27,5 +27,6 @@ public class PhantomIsolation2 extends JavaPlugin {
         instance.getCommand("phantomisolationreload").setExecutor(new ReloadCommand());
         instance.getCommand("phantomisolation").setTabCompleter(new PhantomIsolationTabCompleterListener());
         instance.getServer().getPluginManager().registerEvents(new PhantomIsolationListener(), instance);
+        instance.getServer().getPluginManager().registerEvents(new MiscUtil(), instance);
     }
 }

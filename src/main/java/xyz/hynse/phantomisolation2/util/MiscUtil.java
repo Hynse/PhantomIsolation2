@@ -3,6 +3,7 @@ package xyz.hynse.phantomisolation2.util;
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.event.Listener;
 import xyz.hynse.phantomisolation2.PhantomIsolation2;
 import xyz.hynse.phantomisolation2.command.PhantomIsolationCommand;
 import xyz.hynse.phantomisolation2.command.ReloadCommand;
@@ -11,7 +12,7 @@ import xyz.hynse.phantomisolation2.listener.PhantomIsolationTabCompleterListener
 
 import java.sql.SQLException;
 
-public class MiscUtil {
+public class MiscUtil implements Listener {
     private static final PhantomIsolation2 instance = PhantomIsolation2.instance;
     private final FileConfiguration config = instance.getConfig();
     public static String phantomisolationMessageReloadConfig;
