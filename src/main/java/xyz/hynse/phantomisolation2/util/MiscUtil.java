@@ -34,6 +34,7 @@ public class MiscUtil {
     public static String database;
     public static String phantomisolationMessageNoPermission;
     public void reload() {
+        instance.saveDefaultConfig();
         instance.reloadConfig();
         taskInitialDelayTick = config.getInt("task.initial-delay-tick");
         taskPeriodTick = config.getInt("task.period-tick");
