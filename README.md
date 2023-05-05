@@ -15,16 +15,16 @@ PhantomIsolation is a plugin allow player choose phantom should spawn on them se
 # Permissions & Commands
 | Command | Description  | Permission | Default |
 |--|--|--|--|
-| `/pil` | usage command list | `` | `true`|
-| `/pil check` | check current settings | `` | `true`|
-| `/pil status` | check current settings | `` | `true`|
-| `/pil enable` | disable phantom to spawn on you | `` | `true`|
-| `/pil on` | disable phantom to spawn on you | `` | `true`|
-| `/pil disable` | enable phantom to spawn on you | `` | `true`|
-| `/pil off` | enable phantom to spawn on you | `` | `true`|
+| `/pil` | usage command list | `` | |
+| `/pil check` | check current settings |  | |
+| `/pil status` | check current settings |  | |
+| `/pil enable` | disable phantom to spawn on you |  | |
+| `/pil on` | disable phantom to spawn on you |  | |
+| `/pil disable` | enable phantom to spawn on you |  | |
+| `/pil off` | enable phantom to spawn on you |  | |
 | `/phantomisolationreload` | reload configuration flies | `phantomisolation.reload ` | `false`|
-| `/pilr` | reload configuration flies | `greenchunk.reload ` | `false`|
-| `/phantomisolation <usage>` | alias command for easy to using command  | `greenchunk.use` | `true`|
+| `/pilr` | reload configuration flies | `phantomisolation.reload ` | `false`|
+| `/phantomisolation <usage>` | alias command for easy to using command  |  | |
 
 
 # Config.yml
