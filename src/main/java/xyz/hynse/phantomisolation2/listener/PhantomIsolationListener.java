@@ -5,7 +5,6 @@ import org.bukkit.Statistic;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import xyz.hynse.phantomisolation2.PhantomIsolation2;
-import xyz.hynse.phantomisolation2.util.MiscUtil;
 import xyz.hynse.phantomisolation2.util.PhantomIsolationSchedulerUtil;
 
 
