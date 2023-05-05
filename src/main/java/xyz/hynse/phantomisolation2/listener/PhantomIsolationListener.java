@@ -11,14 +11,14 @@ import xyz.hynse.phantomisolation2.util.PhantomIsolationSchedulerUtil;
 
 public class PhantomIsolationListener implements Listener {
     public void start() {
-        PhantomIsolationSchedulerUtil.runAsyncScheduler(PhantomIsolation2.instance, this::tick, MiscUtil.taskInitialDelayTick, MiscUtil.taskInitialDelayTick);
+        PhantomIsolationSchedulerUtil.runAsyncScheduler(PhantomIsolation2.instance, this::tick, 1, 20);
     }
 
     public void tick() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             if (PhantomIsolation2.databaseUtil.getPlayerIsolationStatus(player)) {
                 int timeSinceRest = player.getStatistic(Statistic.TIME_SINCE_REST);
-                if (timeSinceRest >= 24000) {
+                if (timeSinceRest >= 1200) {
                     player.setStatistic(Statistic.TIME_SINCE_REST, 0);
                 }
             }

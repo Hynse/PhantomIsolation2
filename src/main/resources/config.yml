@@ -1,10 +1,5 @@
 # PhantomIsolation2 Configuration
 
-# Task settings
-task:
-  initial-delay-tick: 20
-  period-tick: 20
-
 # PhantomIsolation command messages
 phantomisolation-command:
   messages:
