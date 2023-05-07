@@ -1,5 +1,8 @@
 package xyz.hynse.phantomisolation2;
 
+import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 import xyz.hynse.phantomisolation2.command.PhantomIsolationCommand;
 import xyz.hynse.phantomisolation2.command.ReloadCommand;
@@ -20,7 +23,11 @@ public class PhantomIsolation2 extends JavaPlugin {
         PhantomIsolationListener listener = new PhantomIsolationListener();
         listener.start();
     }
-
+    @EventHandler
+    public void onPlayerJoin(PlayerJoinEvent event) {
+        PhantomIsolationListener listener = new PhantomIsolationListener();
+        listener.start();
+    }
     public void register() {
         getCommand("phantomisolation").setExecutor(new PhantomIsolationCommand());
         getCommand("phantomisolationreload").setExecutor(new ReloadCommand());

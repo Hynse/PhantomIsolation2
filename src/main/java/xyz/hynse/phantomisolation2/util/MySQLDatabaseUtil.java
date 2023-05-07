@@ -59,7 +59,10 @@ public class MySQLDatabaseUtil implements DatabaseUtil {
                 while (resultSet.next()) {
                     String uuid = resultSet.getString("uuid");
                     boolean status = resultSet.getBoolean("status");
-                    PhantomIsolation2.databaseUtil.setPlayerIsolationStatus(PhantomIsolation2.instance.getServer().getPlayer(UUID.fromString(uuid)), status);
+                    Player player = PhantomIsolation2.instance.getServer().getPlayer(UUID.fromString(uuid));
+                    if (player != null && player.isOnline()) {
+                        PhantomIsolation2.databaseUtil.setPlayerIsolationStatus(player, status);
+                    }
                 }
             }
         } catch (SQLException e) {
