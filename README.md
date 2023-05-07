@@ -15,26 +15,21 @@ PhantomIsolation is a plugin allow player choose phantom should spawn on them se
 # Permissions & Commands
 | Command | Description  | Permission | Default |
 |--|--|--|--|
-| `/pil` | usage command list | `greenchunk.use` | `true`|
-| `/pil check` | check current settings | `greenchunk.use` | `true`|
-| `/pil status` | check current settings | `greenchunk.use` | `true`|
-| `/pil enable` | disable phantom to spawn on you | `greenchunk.use` | `true`|
-| `/pil on` | disable phantom to spawn on you | `greenchunk.use` | `true`|
-| `/pil disable` | enable phantom to spawn on you | `greenchunk.use` | `true`|
-| `/pil off` | enable phantom to spawn on you | `greenchunk.use` | `true`|
-| `/phantomisolationreload` | reload configuration flies | `greenchunk.reload ` | `false`|
-| `/pilr` | reload configuration flies | `greenchunk.reload ` | `false`|
-| `/phantomisolation <usage>` | alias command for easy to using command  | `greenchunk.use` | `true`|
+| `/pil` | usage command list | `` | |
+| `/pil check` | check current settings |  | |
+| `/pil status` | check current settings |  | |
+| `/pil enable` | disable phantom to spawn on you |  | |
+| `/pil on` | disable phantom to spawn on you |  | |
+| `/pil disable` | enable phantom to spawn on you |  | |
+| `/pil off` | enable phantom to spawn on you |  | |
+| `/phantomisolationreload` | reload configuration flies | `phantomisolation.reload ` | `false`|
+| `/pilr` | reload configuration flies | `phantomisolation.reload ` | `false`|
+| `/phantomisolation <usage>` | alias command for easy to using command  |  | |
 
 
 # Config.yml
 ```yml
 # PhantomIsolation2 Configuration
-
-# Task settings
-task:
-  initial-delay-tick: 20
-  period-tick: 20
 
 # PhantomIsolation command messages
 phantomisolation-command:
