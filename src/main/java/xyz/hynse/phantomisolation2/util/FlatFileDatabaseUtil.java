@@ -19,18 +19,14 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 public class FlatFileDatabaseUtil implements DatabaseUtil {
-    private static final Map<UUID, String> isolatedPlayers = new HashMap<>();
+    private static final Map<UUID, Boolean> isolatedPlayers = new HashMap<>();
 
     public boolean getPlayerIsolationStatus(Player player) {
-        return isolatedPlayers.containsKey(player.getUniqueId());
+        return isolatedPlayers.getOrDefault(player.getUniqueId(), false);
     }
 
     public void setPlayerIsolationStatus(Player player, boolean isEnabled) {
-        if (isEnabled) {
-            isolatedPlayers.put(player.getUniqueId(), "enabled");
-        } else {
-            isolatedPlayers.remove(player.getUniqueId());
-        }
+        isolatedPlayers.put(player.getUniqueId(), isEnabled);
         saveData();
     }
 
@@ -41,10 +37,10 @@ public class FlatFileDatabaseUtil implements DatabaseUtil {
             try {
                 Gson gson = new Gson();
                 String data = Files.readString(dataPath, StandardCharsets.UTF_8);
-                Map<String, Map<String, String>> dataMap = gson.fromJson(data, Map.class);
-                for (Map.Entry<String, Map<String, String>> entry : dataMap.entrySet()) {
+                Map<String, Map<String, Object>> dataMap = gson.fromJson(data, Map.class);
+                for (Map.Entry<String, Map<String, Object>> entry : dataMap.entrySet()) {
                     UUID uuid = UUID.fromString(entry.getKey());
-                    String status = entry.getValue().get("status");
+                    boolean status = (boolean) entry.getValue().get("status");
                     isolatedPlayers.put(uuid, status);
                 }
             } catch (IOException e) {
@@ -55,9 +51,9 @@ public class FlatFileDatabaseUtil implements DatabaseUtil {
 
     private static void saveData() {
         Gson gson = new GsonBuilder().setPrettyPrinting().create();
-        Map<String, Map<String, String>> dataMap = new HashMap<>();
+        Map<String, Map<String, Object>> dataMap = new HashMap<>();
         isolatedPlayers.forEach((uuid, status) -> {
-            Map<String, String> playerData = new HashMap<>();
+            Map<String, Object> playerData = new HashMap<>();
             playerData.put("username", Bukkit.getOfflinePlayer(uuid).getName());
             playerData.put("status", status);
             dataMap.put(uuid.toString(), playerData);
