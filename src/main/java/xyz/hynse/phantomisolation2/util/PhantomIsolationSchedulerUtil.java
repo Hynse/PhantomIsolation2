@@ -25,12 +25,9 @@ public class PhantomIsolationSchedulerUtil {
 
     public static void runAsyncScheduler(Plugin plugin, Runnable runnable, int initialDelayTicks, int periodTicks) {
         if (isFolia()) {
-            AsyncScheduler asyncScheduler = Bukkit.getServicesManager().load(AsyncScheduler.class);
-            if (asyncScheduler != null) {
-                asyncScheduler.runAtFixedRate(plugin, (task) -> runnable.run(), initialDelayTicks, periodTicks, TimeUnit.MILLISECONDS);
-            }
+            Bukkit.getAsyncScheduler().runAtFixedRate(plugin, (task) -> runnable.run(), initialDelayTicks, periodTicks, TimeUnit.MILLISECONDS);
         } else {
-            Bukkit.getScheduler().runTaskTimer(plugin, runnable, initialDelayTicks, periodTicks);
+            Bukkit.getScheduler().runTaskTimer(plugin, runnable, initialDelayTicks * 20L, periodTicks * 20L);
         }
     }
 }
